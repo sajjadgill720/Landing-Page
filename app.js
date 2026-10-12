@@ -226,6 +226,14 @@ const countryMenus = [storeSelector, dialogStoreSelector].map(selector => {
   menu.append(summary, list);
   selector.after(menu);
   selector.hidden = true;
+  menu.addEventListener('toggle', () => {
+    if (!menu.open) return;
+    const dialog = menu.closest('dialog');
+    const topEdge = dialog ? dialog.getBoundingClientRect().top : 0;
+    const available = summary.getBoundingClientRect().top - topEdge - 16;
+    list.style.maxHeight = `${Math.max(48, Math.min(260, available))}px`;
+    list.scrollTop = 0;
+  });
   selector.addEventListener('change', () => {
     menu.open = false;
     summary.focus();
