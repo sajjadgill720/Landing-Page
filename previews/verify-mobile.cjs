@@ -16,6 +16,10 @@ const assert = require('node:assert/strict');
     await page.setViewportSize({width, height});
     await page.goto(pathToFileURL(path.resolve(__dirname, '../index.html')).href);
     await page.evaluate(() => document.fonts.ready);
+    const previewHeadingDisplay = await page.locator('.preview-section > .section-heading').evaluate(el => getComputedStyle(el).display);
+    const reviewFont = await page.locator('.review-quote').first().evaluate(el => getComputedStyle(el).fontSize);
+    assert.equal(previewHeadingDisplay, width <= 820 ? 'none' : 'flex');
+    assert.equal(reviewFont, width <= 820 ? '14px' : '16px');
     if (width === 390) await page.screenshot({path: path.join(__dirname, 'mobile-home.png')});
     const overflowing = await page.evaluate(() => [...document.querySelectorAll('body *')].filter(el => {
       const rect = el.getBoundingClientRect();
@@ -23,6 +27,12 @@ const assert = require('node:assert/strict');
     }).map(el => ({tag: el.tagName, class: el.className, right: el.getBoundingClientRect().right})).slice(0, 15));
     if (overflowing.length) console.log(JSON.stringify(overflowing));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Page overflows at ${width}`);
+    if (width === 390) {
+      await page.locator('.mobile-purchase a[href="#inside"]').click();
+      await page.screenshot({path: path.join(__dirname, 'mobile-pages.png')});
+      await page.locator('#reviews').evaluate(el => el.scrollIntoView({block: 'start'}));
+      await page.screenshot({path: path.join(__dirname, 'mobile-reviews.png')});
+    }
     await page.locator('.hero-purchase').click();
     await page.locator('.amazon-purchase').click();
     const modalBounds = await page.locator('#purchase-dialog').boundingBox();

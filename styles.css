@@ -2159,6 +2159,27 @@ dialog h2 {
 }
 
 /* Compact checkout keeps its purchase action visible at every viewport size. */
+@media (max-width: 820px) {
+  .preview-section > .section-heading { display: none; }
+  .preview-section { padding-top: 24px; padding-bottom: 40px; }
+  .preview-toolbar { margin-top: 0; gap: 12px; }
+  .view-switch { width: 100%; }
+  .view-switch button { flex: 1; min-height: 44px; padding: 8px; font-size: 12px; }
+  .reviews-section { padding-bottom: 40px; }
+  .reviews-section > .section-heading { display: block; }
+  .reviews-section .section-heading .eyebrow { font-size: 10px; margin-bottom: 8px; }
+  .reviews-section h2 { font-size: 28px; }
+  .reviews-section .section-heading > p { font-size: 13px; margin-top: 12px; }
+  .reviews-grid { gap: 12px; margin-top: 20px; }
+  .review-card { padding: 16px; }
+  .review-stars { font-size: 14px; margin-bottom: 8px; }
+  .review-quote { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+  .review-author { padding-top: 10px; gap: 10px; }
+  .author-avatar { width: 30px; height: 30px; flex-shrink: 0; font-size: 11px; }
+  .author-meta strong { font-size: 12px; }
+  .author-meta span { font-size: 10px; line-height: 1.4; display: block; }
+}
+
 #purchase-dialog {
   position: fixed;
   inset: 0;
