@@ -40,6 +40,12 @@ const assert = require('node:assert/strict');
       await page.screenshot({path: path.join(__dirname, 'mobile-details.png')});
     }
     await page.locator('.hero-purchase').click();
+    if (width <= 820) {
+      const buyBounds = await page.locator('.amazon-purchase').boundingBox();
+      const barBounds = await page.locator('.mobile-purchase').boundingBox();
+      assert(buyBounds.y >= 0 && buyBounds.y + buyBounds.height < barBounds.y, `Section buy button must be visible after Get the book at ${width}x${height}`);
+      if (width === 390) await page.screenshot({path: path.join(__dirname, 'mobile-buy-section.png')});
+    }
     await page.locator('.amazon-purchase').click();
     const modalBounds = await page.locator('#purchase-dialog').boundingBox();
     assert(modalBounds.y >= 0 && modalBounds.y + modalBounds.height <= height, `Popup outside viewport at ${width}x${height}: ${JSON.stringify(modalBounds)}`);

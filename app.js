@@ -316,6 +316,23 @@ async function detectAmazonStore() {
 
 detectAmazonStore();
 
+// On phones, frame the purchase section around the visible Amazon action.
+document.querySelectorAll('a[href="#offer"]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (!window.matchMedia('(max-width: 820px)').matches) return;
+    event.preventDefault();
+    const copy = document.querySelector('.offer-copy').getBoundingClientRect();
+    const buy = document.querySelector('.amazon-purchase').getBoundingClientRect();
+    const bottomBar = document.querySelector('.mobile-purchase').getBoundingClientRect();
+    const visibleBottom = window.innerHeight - bottomBar.height - 20;
+    const top = window.scrollY + Math.max(copy.top - 16, buy.bottom - visibleBottom);
+    window.scrollTo({
+      top,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+    });
+  });
+});
+
 $('enlarge').addEventListener('click', () => openDialog('zoom-dialog'));
 
 document.querySelectorAll('dialog').forEach(dialog => {
