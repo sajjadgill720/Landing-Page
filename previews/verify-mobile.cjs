@@ -30,7 +30,9 @@ const assert = require('node:assert/strict');
     if (overflowing.length) console.log(JSON.stringify(overflowing));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Page overflows at ${width}`);
     if (width === 390) {
-      await page.locator('.mobile-purchase a[href="#inside"]').click();
+      await page.locator('.mobile-purchase a[href="#approach-title"]').click();
+      assert.equal(await page.evaluate(() => location.hash), '#approach-title');
+      await page.locator('#inside').evaluate(el => el.scrollIntoView({block: 'start'}));
       await page.screenshot({path: path.join(__dirname, 'mobile-pages.png')});
       await page.locator('#reviews').evaluate(el => el.scrollIntoView({block: 'start'}));
       await page.screenshot({path: path.join(__dirname, 'mobile-reviews.png')});
