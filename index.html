@@ -381,25 +381,28 @@
   <!-- Purchase Modal -->
   <dialog id="purchase-dialog" aria-labelledby="purchase-title">
     <button class="close-dialog" data-close aria-label="Close Amazon store selection">×</button>
-    <p class="eyebrow">AMAZON KDP · PAPERBACK EDITION</p>
-    <h2 id="purchase-title">Choose your<br><em>Amazon store.</em></h2>
-    <div class="dialog-offer">
-      <img src="assets/cover.webp" width="800" height="1036" alt="Cozy Moments book cover">
-      <div>
-        <h3>Cozy Moments</h3>
-        <p>36 interior pages · 8.5" × 11"</p>
-        <strong>$9.99 USD</strong>
+    <div class="purchase-header">
+      <p class="eyebrow">YOUR NEXT COZY MOMENT</p>
+      <h2 id="purchase-title">Get your copy.</h2>
+      <div class="dialog-offer">
+        <img src="assets/cover.webp" width="800" height="1036" alt="Cozy Moments book cover">
+        <div>
+          <h3>Cozy Moments</h3>
+          <p>Paperback · 36 artwork pages</p>
+          <strong>$9.99 <span>USD</span></strong>
+        </div>
       </div>
     </div>
-    <div class="placeholder-message">
-      <strong>Bring home a little cozy.</strong>
-      <p>Choose your delivery country, then view the book on your local Amazon store. Check shipping costs and delivery dates there before ordering.</p>
+    <div class="purchase-body">
+      <label class="amazon-store-label" for="amazon-dialog-store">Where should your book be delivered?</label>
+      <p class="purchase-country-hint">Choose the Amazon store for your delivery country.</p>
+      <select id="amazon-dialog-store" class="amazon-store"></select>
     </div>
-    <label class="amazon-store-label" for="amazon-dialog-store">1. Choose your delivery country</label>
-    <select id="amazon-dialog-store" class="amazon-store"></select>
-    <a class="button" href="https://www.amazon.com/dp/B0HMJ8V7V6" target="_blank" rel="noopener" style="width: 100%; margin-bottom: 10px;" id="amazon-direct-btn"><span id="amazon-cta-label">View book on Amazon US</span> <span aria-hidden="true">↗</span></a>
-    <p class="purchase-next-step">2. View the book and delivery options on Amazon · Opens in a new tab</p>
-    <button class="button outline" data-close style="width: 100%;">Back to the book preview</button>
+    <div class="purchase-footer">
+      <a class="button" href="https://www.amazon.com/dp/B0HMJ8V7V6" target="_blank" rel="noopener noreferrer" id="amazon-direct-btn"><span id="amazon-cta-label">Buy on Amazon US</span> <span aria-hidden="true">↗</span></a>
+      <p class="purchase-next-step">Opens Amazon in a new tab. Confirm local price, shipping costs, and delivery before ordering.</p>
+      <button class="purchase-back" data-close>Keep exploring the book</button>
+    </div>
   </dialog>
 
   <!-- Zoom Dialog -->

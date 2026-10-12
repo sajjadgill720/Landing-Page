@@ -256,7 +256,7 @@ function setAmazonStore(country) {
       radio.checked = radio.value === selected;
     });
   }
-  $('amazon-cta-label').textContent = `View book on Amazon ${selected === 'GB' ? 'UK' : selected}`;
+  $('amazon-cta-label').textContent = `Buy on Amazon ${selected === 'GB' ? 'UK' : selected}`;
   document.querySelectorAll('.amazon-purchase, #amazon-direct-btn').forEach(link => {
     link.href = amazonUrl(selected);
   });
